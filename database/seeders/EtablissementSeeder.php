@@ -1,7 +1,6 @@
 <?php
 
-namespace Database\Seeders;
-
+use App\Models\Etablissement;
 use Illuminate\Database\Seeder;
 
 class EtablissementSeeder extends Seeder
@@ -13,6 +12,6 @@ class EtablissementSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Etablissement::create(['name' => 'SAINT GABRIELLE']);
     }
 }

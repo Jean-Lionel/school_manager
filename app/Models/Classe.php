@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Classe extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['level_id','name'];
 }

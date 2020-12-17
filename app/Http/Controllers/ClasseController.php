@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classe;
+use App\Models\Level;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+
 
 class ClasseController extends Controller
 {
@@ -14,9 +18,13 @@ class ClasseController extends Controller
      */
     public function index()
     {
+        $levels = Level::all();
+        $classes = Classe::latest()->get();
         
-
-        return Inertia::render();
+        return Inertia::render('classes/index', [
+           'levels' => $levels,
+           'classes' => $classes
+       ]);
     }
 
     /**
@@ -37,7 +45,15 @@ class ClasseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'level_id' => 'required',
+            'name' => 'required'
+
+        ]);
+        Classe::create($request->all());
+
+        return redirect()->back()
+        ->with('message', 'La classe a été ajouté');
     }
 
     /**
@@ -69,9 +85,26 @@ class ClasseController extends Controller
      * @param  \App\Models\Classe  $classe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classe $classe)
+    public function update(Request $request)
     {
         //
+
+        // dd($request->all());
+
+        $request->validate([
+            'level_id' => 'required',
+            'name' => 'required'
+
+        ]);
+
+        if ($request->has('id')) {
+
+            Classe::find($request->input('id'))->update($request->all());
+            return redirect()->back()
+
+            ->with('message', ' Updated Successfully.');
+
+        }
     }
 
     /**

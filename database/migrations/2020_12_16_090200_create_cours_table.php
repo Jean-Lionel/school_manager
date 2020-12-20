@@ -16,9 +16,11 @@ class CreateCoursTable extends Migration
         Schema::create('cours', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('level_id')->constrained();
+            
             $table->float('nombre_heure');
             $table->float('ponderation');
+            $table->foreignId('level_id')->constrained();
+            $table->foreignId('teacher_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

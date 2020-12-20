@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\CourController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('classes', ClasseController::class);
+Route::resource('courses', CourController::class);

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Classe;
 use App\Models\Cour;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,6 +24,10 @@ class CourFactory extends Factory
     {
         return [
             //
+
+            'name'=> $this->faker->name,
+            'classe_id' => Classe::all()->random()->id
+
         ];
     }
 }

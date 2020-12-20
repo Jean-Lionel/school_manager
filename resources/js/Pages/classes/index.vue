@@ -34,7 +34,7 @@
 			<tr v-for="classe in classes" :key="classe.id">
 				<td >{{ classe.id }}</td>
 				<td >{{ classe.name }}</td>
-				<td >{{ classe.id }}</td>
+				<td >{{ classe.name }}</td>
 				<td>
 					<button @click.prevent="edit(classe)">Modifier</button>
 					<button @click.prevent="remove(classe)">Supprimer</button>

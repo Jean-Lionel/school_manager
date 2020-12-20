@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Cour;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CourController extends Controller
 {
@@ -12,8 +14,20 @@ class CourController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $cours = Cour::when($request->val , function($query, $val){
+
+            $query->where('name','LIKE', '%'.$val.'%');
+
+        })->paginate();
+        $classes = Classe::all();
+
+        return Inertia::render('Cours/index', 
+            [
+                'cours' => $cours,
+                'classes' => $classes
+            ]);
         //
     }
 

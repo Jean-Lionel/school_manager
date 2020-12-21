@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TeacherController extends Controller
 {
@@ -14,7 +15,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+       return Inertia::render('Teachers/Index');
     }
 
     /**
@@ -35,7 +36,13 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'sexe' => 'required',
+        ]);
+        Teacher::create($this->request->all());
     }
 
     /**

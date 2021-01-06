@@ -17,6 +17,9 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('sexe');
+            $table->foreignId('classe_id')->constrained();
+            $table->date('date_naissance');
             $table->timestamps();
             $table->softDeletes();
         });

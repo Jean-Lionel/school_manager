@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CourController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[ClasseController::class, 'index']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
@@ -27,3 +30,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('classes', ClasseController::class);
 Route::resource('courses', CourController::class);
 Route::resource('teachers', TeacherController::class);
+Route::resource('students', StudentController::class);

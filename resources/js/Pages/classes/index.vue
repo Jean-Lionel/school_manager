@@ -10,7 +10,7 @@
 
 
 	<form action="" @submit.prevent>
-		<h1>Noulle classe</h1>
+		<h1>Nouvelle classe</h1>
 		<select v-model="form.level_id" id="">
 			<option  v-for="level in levels"> {{ level.name }}</option>
 		</select>
@@ -33,7 +33,7 @@
 		<tbody>
 			<tr v-for="classe in classes" :key="classe.id">
 				<td >{{ classe.id }}</td>
-				<td >{{ classe.name }}</td>
+				<td >{{ classe.level_id }}</td>
 				<td >{{ classe.name }}</td>
 				<td>
 					<button @click.prevent="edit(classe)">Modifier</button>
@@ -72,7 +72,7 @@
 		},
 
 		mounted(){
-			console.log(this.levels)
+			
 		},
 		methods:{
 

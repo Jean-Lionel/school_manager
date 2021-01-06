@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -15,6 +17,14 @@ class StudentController extends Controller
     public function index()
     {
         //
+
+        $students = Student::paginate();
+        $classes = Classe::all();
+
+       return Inertia::render('Students/index', [
+        'students' => $students,
+        'classes' => $classes
+       ]);
     }
 
     /**
@@ -35,7 +45,22 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            "first_name" => "required",
+            "last_name" => "required",
+            "date_naissance" => "",
+            "sexe" => "",
+            "class_id" => "",
+
+        ]);
+
+        // dd($request->all());
+
+        Student::create($request->all());
+
+
+        return redirect()->back()->with('message', 'Réussi');
     }
 
     /**

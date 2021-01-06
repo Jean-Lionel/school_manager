@@ -4,8 +4,12 @@
 	 	<h2>Ajouter un cours</h2>
 
 	 	<div class="row">
-	 		<div class="card col-md-6">
+	 		<div class="card col-md-4">
+	 			<label for="name">Name</label>
 	 			<input type="text" v-model="form.name" class="form-control">
+
+	 			<label for="">Classe</label>
+
 
 	 			<select v-model="form.classe_id" name="" id="">
 	 				<option value="">Selectionner la classe ...</option>

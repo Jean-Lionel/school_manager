@@ -15,7 +15,13 @@ class TeacherController extends Controller
      */
     public function index()
     {
-       return Inertia::render('Teachers/Index');
+        $teachers = Teacher::paginate();
+
+       return Inertia::render('Teachers/Index',
+                [
+                    'teachers' => $teachers
+                ]
+            );
     }
 
     /**
@@ -36,13 +42,18 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
 
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'sexe' => 'required',
         ]);
-        Teacher::create($this->request->all());
+        Teacher::create($request->all());
+
+
+        return redirect()->back()
+        ->with('message', 'Réussi');
     }
 
     /**

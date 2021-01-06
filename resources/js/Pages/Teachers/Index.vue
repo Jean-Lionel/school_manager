@@ -2,24 +2,24 @@
 	<base-layout>
 	<div>
 		<div class="row">
-			<h3>Ajouter un Professeur</h3>
 			<div class="col-md-4">
-
-
+				<h3>Ajouter un Professeur</h3>
+				<p class="text-sm">{{ $page.flash.message }}</p>
+				<p>{{ $page.errors }}</p>
 				<form action="#">
 					<div class="form-group">
 						<label for="">Nom</label>
-						<input type="text" v-model="form.first_name" class="form-control">
+						<input required="" type="text" v-model="form.first_name" class="form-control">
 					</div>
 
 					<div class="form-group">
 						<label for="">Prénom</label>
-						<input type="text" v-model="form.last_name" class="form-control">
+						<input required="" type="text" v-model="form.last_name" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="">SEXE</label><br>
 						HOMME
-						<input type="radio" v-model="form.sexe" value="HOMME">
+						<input  type="radio" v-model="form.sexe" value="HOMME">
 						FEMME
 						<input type="radio" v-model="form.sexe" value="FEMME">
 					</div>
@@ -33,10 +33,39 @@
 				</form>
 				
 			</div>
+
+			<div class="col-md-8">
+
+				<h5>Liste des professeurs</h5>
+
+				<table class="table-hover table table-striped">
+					<tr>
+						<th>#</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Email</th>
+						<th>GENRE</th>
+						<th>Action</th>
+					</tr>
+
+					<tr v-for="teacher in teachers.data" :key="teacher.id">
+						<td>{{ teacher.id }}</td>
+						<td>{{ teacher.first_name }}</td>
+						<td>{{ teacher.last_name }}</td>
+						<td>{{ teacher.email }}</td>
+						<td>{{ teacher.sexe }}</td>
+						<td>
+							<button class="btn btn-sm btn-warning" @click.prevent="update(teacher)">edit</button>
+							<button class="btn btn-sm btn-danger" @click.prevent="supprimer(teacher)">supprimer</button>
+						</td>
+					</tr>
+				</table>
+				
+			</div>
 		</div>
 	</div>
-    </base-layout>
-	
+</base-layout>
+
 </template>
 
 <script>
@@ -45,6 +74,9 @@
 		components:{
 			BaseLayout
 		},
+		props:{
+			teachers : Object
+		} ,
 		data(){
 			return {
 				form:{
@@ -64,9 +96,18 @@
 					email : this.form.email,
 
 				},
+				{preserveState : false})
+			},
 
+			update(teacher){
+				alert("Updated")
+				//this.$inertia.post()
+				console.log(teacher)
+			},
 
-					{preserveState : false})
+			supprimer(teacher){
+				alert('DELETE TODO')
+				console.log(teacher)
 			}
 		}
 

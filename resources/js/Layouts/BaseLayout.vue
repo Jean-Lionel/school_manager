@@ -18,9 +18,23 @@
 		<div class="col-md-2 bg-dark text-white">
 			<ul>
 				<li>Vue Global</li>
-				<li>Professeur</li>
-				<li>Elève</li>
-				<li>Cours</li>
+				<li>
+
+					<inertia-link :href="route('teachers.index')">
+						Professeur
+					</inertia-link>
+
+				</li>
+				<li><inertia-link :href="route('students.index')">Elève</inertia-link></li>
+				<li>
+					<inertia-link :href="route('courses.index')">courses</inertia-link>
+
+				</li>
+
+				<li>
+					<inertia-link :href="route('classes.index')">Classes</inertia-link>
+
+				</li>
 				<li>Notes</li>
 				<li>Résultat</li>
 

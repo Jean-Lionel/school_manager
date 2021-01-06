@@ -3494,6 +3494,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/BaseLayout */ "./resources/js/Layouts/BaseLayout.vue");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3559,27 +3589,41 @@ __webpack_require__.r(__webpack_exports__);
     BaseLayout: _Layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    cours: Object,
-    classes: Array
+    cours: {
+      type: Object,
+      "default": function _default() {
+        return [{}];
+      }
+    },
+    classes: Array,
+    teachers: Array
   },
   data: function data() {
+    var _form;
+
     return {
-      form: {
+      form: (_form = {
         name: "",
-        classe_id: ""
-      },
+        classe_id: "",
+        ponderation: ""
+      }, _defineProperty(_form, "classe_id", ""), _defineProperty(_form, "teacher_id", ""), _form),
       val: ""
     };
   },
-  mounted: function mounted() {
-    // console.log(this.cours);
-    console.log(this.route);
+  mounted: function mounted() {// console.log(this.cours);
+    //console.log(this.teachers);
   },
   methods: {
     search: function search() {
       this.$inertia.replace(this.route('courses.index', {
         val: this.val
       }));
+    },
+    save: function save() {
+      //console.log(this.form.teacher_id)
+      this.$inertia.post('courses', this.form, {
+        preserveState: false
+      });
     }
   }
 });
@@ -48211,76 +48255,234 @@ var render = function() {
     _c("div", [
       _c("h2", [_vm._v("Ajouter un cours")]),
       _vm._v(" "),
+      _c("p", { staticClass: "text-sm" }, [
+        _vm._v(_vm._s(_vm.$page.flash.message))
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "card col-md-4" }, [
-          _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.name,
-                expression: "form.name"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.form.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "name", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "" } }, [_vm._v("Classe")]),
-          _vm._v(" "),
           _c(
-            "select",
+            "form",
             {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.classe_id,
-                  expression: "form.classe_id"
-                }
-              ],
-              attrs: { name: "", id: "" },
+              attrs: { action: "" },
               on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.form,
-                    "classe_id",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
+                submit: function($event) {
+                  $event.preventDefault()
                 }
               }
             },
             [
-              _c("option", { attrs: { value: "" } }, [
-                _vm._v("Selectionner la classe ...")
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.name,
+                    expression: "form.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.form.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "name", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "error text-danger" }, [
+                _vm._v(_vm._s(_vm.$page.errors.name))
               ]),
               _vm._v(" "),
-              _vm._l(_vm.classes, function(classe) {
-                return _c("option", { attrs: { value: "" } }, [
-                  _vm._v("\n \t\t\t\t\t" + _vm._s(classe.name) + "\n \t\t\t\t")
-                ])
+              _c("label", { attrs: { for: "" } }, [_vm._v("Pondération")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.ponderation,
+                    expression: "form.ponderation"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.ponderation },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "ponderation", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "error text-danger" }, [
+                _vm._v(_vm._s(_vm.$page.errors.ponderation))
+              ]),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "" } }, [_vm._v("Nombre d'heure")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.nombre_heure,
+                    expression: "form.nombre_heure"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.nombre_heure },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "nombre_heure", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "error text-danger" }, [
+                _vm._v(_vm._s(_vm.$page.errors.nombre_heure))
+              ]),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "" } }, [_vm._v("Classe")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.classe_id,
+                      expression: "form.classe_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "", id: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "classe_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selectionner la classe ...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.classes, function(classe) {
+                    return _c("option", { domProps: { value: classe.id } }, [
+                      _vm._v(
+                        "\n\t \t\t\t\t\t" +
+                          _vm._s(classe.name) +
+                          "\n\t \t\t\t\t"
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "error text-danger" }, [
+                _vm._v(_vm._s(_vm.$page.errors.classe_id))
+              ]),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "" } }, [_vm._v("Professeur")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.teacher_id,
+                      expression: "form.teacher_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "teacher_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selectionner le professeur ...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.teachers, function(teacher) {
+                    return _c("option", { domProps: { value: teacher.id } }, [
+                      _vm._v(
+                        "\n\t \t\t\t\t\t" +
+                          _vm._s(teacher.first_name) +
+                          " " +
+                          _vm._s(teacher.last_name) +
+                          " \n\t \t\t\t\t"
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "error text-danger" }, [
+                _vm._v(_vm._s(_vm.$page.errors.teacher_id))
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "mt-3 btn btn-primary form-control",
+                attrs: { type: "submit", value: "Enregistrer" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.save($event)
+                  }
+                }
               })
-            ],
-            2
+            ]
           )
         ]),
         _vm._v(" "),
@@ -48313,13 +48515,17 @@ var render = function() {
           _vm._v(" "),
           _c(
             "table",
-            { attrs: { classe: "table table-borded table-responsive" } },
+            { attrs: { classe: "table table-bordered table-striped" } },
             [
-              _c("thead", [
+              _c("thead", { staticClass: "badge-dark" }, [
                 _c("tr", [
                   _c("th", [_vm._v("name")]),
                   _vm._v(" "),
-                  _c("th", [_vm._v("Class")])
+                  _c("th", [_vm._v("Pofesseur")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Classe")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Pondération")])
                 ])
               ]),
               _vm._v(" "),
@@ -48327,9 +48533,26 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.cours.data, function(cour) {
                   return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(cour.name))]),
+                    _c("td", { staticClass: "col" }, [
+                      _vm._v(_vm._s(cour.name))
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(cour.classe_id))])
+                    _c("td", { staticClass: "col" }, [
+                      _vm._v(
+                        _vm._s(cour.teacher.first_name) +
+                          " " +
+                          _vm._s(cour.teacher.last_name) +
+                          " "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "col" }, [
+                      _vm._v(_vm._s(cour.classe.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "col" }, [
+                      _vm._v(_vm._s(cour.ponderation))
+                    ])
                   ])
                 }),
                 0
@@ -48337,19 +48560,25 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            [
-              _c("inertia-link", { attrs: { href: _vm.cours.prev_page_url } }, [
-                _vm._v("Précedent")
-              ]),
-              _vm._v(" "),
-              _c("inertia-link", { attrs: { href: _vm.cours.next_page_url } }, [
-                _vm._v("Suivant")
-              ])
-            ],
-            1
-          )
+          _vm.cours.prev_page_url
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "inertia-link",
+                    { attrs: { href: _vm.cours.prev_page_url } },
+                    [_vm._v("Précedent")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "inertia-link",
+                    { attrs: { href: _vm.cours.next_page_url } },
+                    [_vm._v("Suivant")]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
         ])
       ])
     ])

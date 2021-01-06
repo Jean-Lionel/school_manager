@@ -19,7 +19,7 @@ class CreateCoursTable extends Migration
             
             $table->float('nombre_heure');
             $table->float('ponderation');
-            $table->foreignId('level_id')->constrained();
+            $table->foreignId('classe_id')->constrained();
             $table->foreignId('teacher_id')->constrained();
             $table->timestamps();
             $table->softDeletes();

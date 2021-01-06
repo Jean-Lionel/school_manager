@@ -13,4 +13,9 @@ class Teacher extends Model
     public function cours(){
     	return $this->hasMany('App\Models\Cour');
     }
+
+    public function getFullNameAttribute()
+    {
+    	return $this->first_name.' '.$this->last_name;
+    }
 }

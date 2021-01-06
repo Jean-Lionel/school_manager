@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classe;
 use App\Models\Cour;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,17 +17,19 @@ class CourController extends Controller
      */
     public function index(Request $request)
     {
-        $cours = Cour::when($request->val , function($query, $val){
+        $cours = Cour::with('teacher','classe')->when($request->val , function($query, $val){
 
             $query->where('name','LIKE', '%'.$val.'%');
 
         })->paginate();
         $classes = Classe::all();
+        $teachers = Teacher::all();
 
         return Inertia::render('Cours/index', 
             [
                 'cours' => $cours,
-                'classes' => $classes
+                'classes' => $classes,
+                'teachers' => $teachers,
             ]);
         //
     }
@@ -50,6 +53,21 @@ class CourController extends Controller
     public function store(Request $request)
     {
         //
+
+         $request->validate([
+            'name' => 'required',
+            'classe_id' => 'required',
+            'ponderation' => 'required',
+            'classe_id' => 'required',
+            'teacher_id' => 'required',
+
+        ]);
+
+        $cours = Cour::create($request->all());
+
+        return redirect()->back()
+        ->with('message', 'Le cour a été ajouté');
+        
     }
 
     /**

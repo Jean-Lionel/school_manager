@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ClasseController;
-use App\Http\Controllers\CourController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
+// use App\Http\Controllers\ClasseController;
+// use App\Http\Controllers\CourController;
+// use App\Http\Controllers\StudentController;
+// use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*

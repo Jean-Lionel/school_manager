@@ -43,9 +43,9 @@
 	 			</form>
 
 	 		</div>
-	 		<div class="card col-md-6">
+	 		<div class="card col-md-8">
 
-	 			<input type="text" v-model="val" @keyup="search" classe="form-control" placeholder="Rechercher .....">
+	 			<input type="text" v-model="val" @keyup="search" classe="form-control" placeholder="Rechercher ....." />
 
 	 			<table classe="table table-bordered table-striped">
 	 				<thead class="badge-dark">
@@ -54,6 +54,7 @@
 	 						<th>Pofesseur</th>
 	 						<th>Classe</th>
 	 						<th>Pondération</th>
+	 						<th>Action</th>
 	 					</tr>
 	 					
 	 					
@@ -65,6 +66,11 @@
 	 						<td class="col">{{ cour.teacher.first_name }} {{ cour.teacher.last_name }} </td>
 	 						<td class="col">{{ cour.classe.name }}</td>
 	 						<td class="col">{{ cour.ponderation }}</td>
+
+	 						<td class="d-flex">
+	 							<button class="btn btn-sm btn-warning" @click="edit(cour)">Modifier</button>
+	 							<button class="btn btn-sm btn-danger" @click="supprimer(cour)">Supprimer</button>
+	 						</td>
 	 						
 	 					</tr>
 	 				</tbody>
@@ -111,6 +117,8 @@
 					ponderation : "",
 					classe_id : "",
 					teacher_id : "",
+					id : ""
+				
 				},
 				val : ""
 
@@ -128,11 +136,20 @@
 
 		   save(){
 
-		   	//console.log(this.form.teacher_id)
-
 		   	this.$inertia.post('courses', 
 		   		this.form
 		   	, {preserveState : false});
+		   },
+
+		   edit(data){
+		   	this.form = Object.assign({}, data)
+
+		   },
+		   supprimer(data){
+		   	if (!confirm('êtez-vous sur de supprimer ?')) return;
+                data._method = 'DELETE';
+                this.$inertia.post('/courses/' + data.id, data)
+
 		   }
 		   
 		   

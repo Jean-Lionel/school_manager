@@ -38,7 +38,7 @@
 
 				<h5>Liste des professeurs</h5>
 
-				<table class="table-hover table table-striped">
+				<table class="table-hover table table-sm table-striped">
 					<tr>
 						<th>#</th>
 						<th>Nom</th>
@@ -83,31 +83,28 @@
 					first_name : "",
 					last_name: "",
 					sexe: "",
-					email:""
+					email:"",
+					id: ""
 				}
 			}
 		},
 		methods:{
 			save(){
-				this.$inertia.post('teachers',{
-					first_name : this.form.first_name,
-					last_name : this.form.last_name,
-					sexe : this.form.sexe,
-					email : this.form.email,
-
-				},
+				this.$inertia.post('teachers',this.form,
 				{preserveState : false})
 			},
 
 			update(teacher){
-				alert("Updated")
-				//this.$inertia.post()
-				console.log(teacher)
+
+				this.form = Object.assign({}, teacher)
+
+				//console.log(teacher)
 			},
 
-			supprimer(teacher){
-				alert('DELETE TODO')
-				console.log(teacher)
+			supprimer(data){
+				if (!confirm('êtez-vous sur de supprimer ?')) return;
+                data._method = 'DELETE';
+                this.$inertia.post('/teachers/' + data.id, data)
 			}
 		}
 

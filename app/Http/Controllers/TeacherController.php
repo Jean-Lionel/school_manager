@@ -49,55 +49,32 @@ class TeacherController extends Controller
             'last_name' => 'required',
             'sexe' => 'required',
         ]);
-        Teacher::create($request->all());
+
+
+        $teacher = $request->id == null ?
+                     new Teacher : Teacher::find($request->id );
+        $teacher->first_name = $request->first_name;
+        $teacher->last_name = $request->last_name;
+        $teacher->sexe = $request->sexe;
+
+        $teacher->save();
+       // Teacher::create();
 
 
         return redirect()->back()
         ->with('message', 'Réussi');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Teacher $teacher)
+   
+    public function destroy(Request $request)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Teacher $teacher)
-    {
-        //
-    }
+        Teacher::find($request->input('id'))->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Teacher $teacher)
-    {
-        //
-    }
+        return redirect()->back();
+       // dd($request);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Teacher $teacher)
-    {
-        //
+        // return redirect()->back();
+
     }
 }

@@ -16,27 +16,29 @@
 		</div>
 
 		<div class="col-md-2 bg-dark text-white">
-			<ul>
-				<li>Vue Global</li>
-				<li>
+			<ul class="list-group m-lg-4">
+				<li class="list-group">Vue Global</li>
+				<li class="list-group">
 
 					<inertia-link :href="route('teachers.index')">
 						Professeur
 					</inertia-link>
 
 				</li>
-				<li><inertia-link :href="route('students.index')">Elève</inertia-link></li>
-				<li>
+				<li class="list-group"><inertia-link :href="route('students.index')">Elève</inertia-link></li>
+				<li class="list-group">
 					<inertia-link :href="route('courses.index')">courses</inertia-link>
 
 				</li>
 
-				<li>
+				<li class="list-group">
 					<inertia-link :href="route('classes.index')">Classes</inertia-link>
 
 				</li>
-				<li>Notes</li>
-				<li>Résultat</li>
+				<li class="list-group">
+					<inertia-link :href="route('notes.index')">Notes</inertia-link>
+				</li>
+				<li class="list-group">Résultat</li>
 
 			</ul>
 

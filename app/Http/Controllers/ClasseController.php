@@ -107,14 +107,12 @@ class ClasseController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Classe  $classe
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Classe $classe)
+    public function destroy(Request $request)
     {
         //
+
+        $classe = Classe::find($request->input('id'))->delete();
+
+        return redirect()->back();
     }
 }

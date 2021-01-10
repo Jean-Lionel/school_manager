@@ -63,7 +63,17 @@ class CourController extends Controller
 
         ]);
 
-        $cours = Cour::create($request->all());
+         $cour = $request->id ? Cour::find($request->id) : new Cour;
+
+         $cour->name = $request->name;
+         $cour->classe_id = $request->classe_id;
+         $cour->ponderation = $request->ponderation;
+         $cour->classe_id = $request->classe_id;
+         $cour->teacher_id = $request->teacher_id;
+
+         $cour->save();
+
+        //$cours = Cour::create($request->all());
 
         return redirect()->back()
         ->with('message', 'Le cour a été ajouté');
@@ -104,14 +114,13 @@ class CourController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cour  $cour
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cour $cour)
+    
+    public function destroy(Request $request)
     {
         //
+       // dd($request);
+        Cour::find($request->input('id'))->delete();
+
+        return redirect()->back();
     }
 }

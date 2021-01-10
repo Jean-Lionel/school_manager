@@ -87,11 +87,11 @@
 
 			},
 
-			remove(row){
+			remove(data){
 				 if (!confirm('Are you sure want to remove?')) return;
                 data._method = 'DELETE';
 
-               // this.$inertia.post();
+                  this.$inertia.post('classes/' + data.id, data)
              
 
 			},

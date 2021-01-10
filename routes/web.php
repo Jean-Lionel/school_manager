@@ -21,13 +21,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/',[ClasseController::class, 'index']);
 
+Route::get('/','ClasseController@index');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
-
 Route::resource('classes', ClasseController::class);
 Route::resource('courses', CourController::class);
 Route::resource('teachers', TeacherController::class);
 Route::resource('students', StudentController::class);
+Route::resource('notes', NoteController::class);
+
+Route::get('student_list/{id}', 'ClasseController@student_list')->name('student_list');

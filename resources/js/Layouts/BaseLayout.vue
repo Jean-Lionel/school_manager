@@ -3,42 +3,57 @@
 		<div class="col-md-12 bg-dark text-white">
 
 			<div class="row">
-				<div class="col-md-2"><h4>St Gabriel</h4></div>
+				<div class="col-md-2">
+
+					<h4> <i class="fa fa-eyedropper"></i> <i class=" fa fa-graduation-cap"></i> St Gabriel</h4></div>
 				<div class="col-md-8">
-					<span>1</span>
-					<span>Nouveau</span>
+					<span><i class="fa fa-bell-o"></i></span>
+					<span> <i class="fa fa-plus"></i> Nouveau</span>
 
 				</div>
 				<div class="col-md-2">
-					<span>YUDA</span>
+					<span>YUDA <i class="fa fa-user"></i></span>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-md-2 bg-dark text-white">
 			<ul class="list-group m-lg-4">
-				<li class="list-group">Vue Global</li>
+				<li class="list-group"><i class="fa fa-dashboard"></i>  Vue Global</li>
 				<li class="list-group">
 
-					<inertia-link :href="route('teachers.index')">
+					<inertia-link class="left-icon" :href="route('teachers.index')">
+						
+						<i class="fa fa-folder-open"></i>
 						Professeur
 					</inertia-link>
 
 				</li>
-				<li class="list-group"><inertia-link :href="route('students.index')">Elève</inertia-link></li>
 				<li class="list-group">
-					<inertia-link :href="route('courses.index')">courses</inertia-link>
+					<inertia-link class="left-icon" :href="route('students.index')"> <i class="fa fa-child"></i> Elève</inertia-link></li>
+				<li class="list-group">
+					<inertia-link class="left-icon" :href="route('courses.index')">
+						<i class="fa fa-book"></i> courses</inertia-link>
 
 				</li>
 
 				<li class="list-group">
-					<inertia-link :href="route('classes.index')">Classes</inertia-link>
+					<inertia-link class="left-icon" :href="route('classes.index')">
+					<i class="fa fa-institution"></i>	Classes</inertia-link>
 
 				</li>
 				<li class="list-group">
-					<inertia-link :href="route('notes.index')">Notes</inertia-link>
+					<inertia-link class="left-icon" :href="route('notes.index')">
+						<i class="fa fa-file"></i> 
+					Notes</inertia-link>
 				</li>
-				<li class="list-group">Résultat</li>
+				<li class="list-group">
+					<inertia-link class="left-icon">
+						<i class="fa fa-calculator"></i> 
+				   Résultat
+						
+					</inertia-link>
+				</li>
 
 			</ul>
 
@@ -54,7 +69,7 @@
 			<!-- Modal Portal -->
 		</div>
 
-		<div class="col-md-12 bg-secondary">
+		<div class="bg-secondary footer">
 			<h1 class="text-center"> hogi.bi</h1>
 
 		</div>
@@ -70,3 +85,23 @@
 		
 	}
 </script>
+
+<style>
+.left-icon{
+	font-size: 20px;
+	color: white;
+}
+
+.left-icon:hover{
+	background: #0b0;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.footer{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+</style>

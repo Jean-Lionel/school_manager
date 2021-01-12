@@ -3170,7 +3170,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "BaseLayout",
+  data: function data() {
+    return {};
+  },
+  methods: {
+    logout: function logout() {
+      //this.$router.push({ name: 'login' })
+      this.$inertia.post('logout', {});
+      window.location.href = 'login';
+    }
+  }
+});
 
 /***/ }),
 
@@ -5037,7 +5050,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".left-icon{\n  font-size: 20px;\n  color: white;\n}\n.left-icon:hover{\n  background: #0b0;\n  cursor: pointer;\n  text-decoration: none;\n}\n.footer{\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n}\n", ""]);
+exports.push([module.i, ".left-icon{\n  font-size: 20px;\n  color: white;\n}\n.left-icon:hover{\n  background: #0b0;\n  cursor: pointer;\n  text-decoration: none;\n}\n.footer{\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n}\n#logout{\n  display: block;\n  padding: 5px;\n}\n#logout:hover{\n  cursor: pointer;\n  background: #red;\n}\n", ""]);
 
 // exports
 
@@ -48304,11 +48317,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "col-md-12 bg-dark text-white" }, [
+      _c("div", { staticClass: "row" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2" }, [
+          _c(
+            "span",
+            {
+              attrs: { id: "logout", title: "Se deconnecter" },
+              on: { click: _vm.logout }
+            },
+            [_vm._v("YUDA "), _c("i", { staticClass: "fa fa-user" })]
+          )
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-2 bg-dark text-white" }, [
       _c("ul", { staticClass: "list-group m-lg-4" }, [
-        _vm._m(1),
+        _vm._m(2),
         _vm._v(" "),
         _c(
           "li",
@@ -48322,7 +48352,7 @@ var render = function() {
               },
               [
                 _c("i", { staticClass: "fa fa-folder-open" }),
-                _vm._v("\n\t\t\t\t\tProfesseur\n\t\t\t\t")
+                _vm._v("\n\t\t\t\t\t\tProfesseur\n\t\t\t\t\t")
               ]
             )
           ],
@@ -48392,7 +48422,7 @@ var render = function() {
               },
               [
                 _c("i", { staticClass: "fa fa-file" }),
-                _vm._v(" \n\t\t\t\tNotes")
+                _vm._v(" \n\t\t\t\t\t\t\t\tNotes")
               ]
             )
           ],
@@ -48405,7 +48435,7 @@ var render = function() {
           [
             _c("inertia-link", { staticClass: "left-icon" }, [
               _c("i", { staticClass: "fa fa-calculator" }),
-              _vm._v(" \n\t\t\t   Résultat\n\t\t\t\t\t\n\t\t\t\t")
+              _vm._v(" \n\t\t\t\t\t\t\t\t\tRésultat\n\n\t\t\t\t\t\t\t\t")
             ])
           ],
           1
@@ -48417,7 +48447,7 @@ var render = function() {
       _c("main", [_vm._t("default")], 2)
     ]),
     _vm._v(" "),
-    _vm._m(2)
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
@@ -48425,30 +48455,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 bg-dark text-white" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-2" }, [
-          _c("h4", [
-            _c("i", { staticClass: "fa fa-eyedropper" }),
-            _vm._v(" "),
-            _c("i", { staticClass: " fa fa-graduation-cap" }),
-            _vm._v(" St Gabriel")
-          ])
-        ]),
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("h4", [
+        _c("i", { staticClass: "fa fa-eyedropper" }),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("span", [_c("i", { staticClass: "fa fa-bell-o" })]),
-          _vm._v(" "),
-          _c("span", [
-            _c("i", { staticClass: "fa fa-plus" }),
-            _vm._v(" Nouveau")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2" }, [
-          _c("span", [_vm._v("YUDA "), _c("i", { staticClass: "fa fa-user" })])
-        ])
+        _c("i", { staticClass: " fa fa-graduation-cap" }),
+        _vm._v(" St Gabriel")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-8" }, [
+      _c("span", [_c("i", { staticClass: "fa fa-bell-o" })]),
+      _vm._v(" "),
+      _c("span", [_c("i", { staticClass: "fa fa-plus" }), _vm._v(" Nouveau")])
     ])
   },
   function() {

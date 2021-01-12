@@ -1,6 +1,6 @@
 <template>
 	<div class="row">
-		<div class="col-md-12 bg-dark text-white">
+		<div class="col-md-12 bg-dark text-white" >
 
 			<div class="row">
 				<div class="col-md-2">
@@ -18,7 +18,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-2 bg-dark text-white">
+			<div class="col-md-2 bg-dark text-white" id="left-bar">
 				<ul class="list-group m-lg-4">
 					<li class="list-group"><i class="fa fa-dashboard"></i>  Vue Global</li>
 					<li class="list-group">
@@ -131,6 +131,9 @@ export default{
 }
 #logout:hover{
 	cursor: pointer;
-	background: #red;
+}
+
+#left-bar{
+	min-height: 600px;
 }
 </style>

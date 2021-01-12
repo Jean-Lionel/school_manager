@@ -19,13 +19,15 @@ class NoteController extends Controller
     public function index()
     {
         //
-
+        $notes = Note::latest()->get();
+        
         $cours = Cour::all();
         $classes = Classe::with('students')->get();
 
         return Inertia('Notes/index',[
             'cours' => $cours,
             'classes' => $classes,
+            'notes' => $notes,
 
         ]);
     }
@@ -49,23 +51,15 @@ class NoteController extends Controller
     public function store(Request $request)
     {
 
-//         trimestre
-// travail_numero
-// point_obtenu
-// ponderation
-// student_id
-// course_id
-// classe_id
-// anne_scolaire_id
-
-        // $request->validate([
-            
-
-        // ]);
-
-        // Les eleves 
-
-       
+        $request->validate([
+                    'course_id' => "required",
+                    'classe_id' => "required",
+                    'type_travail' => "required",
+                    'travail_numero' => "required",
+                    'ponderation' => "required",
+                    'trimestre' => "required",
+                    'anne_scolaire_id' => "required"
+        ]);
 
         $classe = Classe::find($request->classe_id);
 

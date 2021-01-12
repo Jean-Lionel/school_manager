@@ -54,7 +54,7 @@
 						<td>{{ teacher.last_name }}</td>
 						<td>{{ teacher.email }}</td>
 						<td>{{ teacher.sexe }}</td>
-						<td>
+						<td class="d-flex">
 							<button class="btn btn-sm btn-warning" @click.prevent="update(teacher)">edit</button>
 							<button class="btn btn-sm btn-danger" @click.prevent="supprimer(teacher)">supprimer</button>
 						</td>

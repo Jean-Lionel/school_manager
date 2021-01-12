@@ -49,7 +49,7 @@
 									Notes</inertia-link>
 								</li>
 								<li class="list-group">
-									<inertia-link class="left-icon">
+									<inertia-link :href="route('students.index')" class="left-icon">
 										<i class="fa fa-calculator"></i> 
 										Résultat
 
@@ -95,8 +95,8 @@ export default{
 
 			//this.$router.push({ name: 'login' })
 
-			this.$inertia.post('logout',{});
-			window.location.href = 'login'
+			// this.$inertia.post('logout',{});
+			// window.location.href = 'login'
 
 
 		}

@@ -69,7 +69,14 @@ class TeacherController extends Controller
     public function destroy(Request $request)
     {
 
-        Teacher::find($request->input('id'))->delete();
+        $teacher = Teacher::find($request->input('id'));
+
+        foreach ($teacher->cours as $value) {
+            $value->delete();
+            
+        }
+
+        $teacher->delete();
 
         return redirect()->back();
        // dd($request);

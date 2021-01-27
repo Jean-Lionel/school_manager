@@ -2,7 +2,7 @@
 	<base-layout>
 	<div class="row">
 
-		<div class="col-md-4">	
+		<div class="col-md-4" v-if="showForm">	
 				<div class="form-group">
 					<label for="first_name">Nom</label>
 					<input type="text" id="first_name" class="form-control" v-model="first_name">
@@ -23,7 +23,7 @@
 				</div>
 		</div>
 
-		<div class="col-md-4">	
+		<div class="col-md-4" v-if="showForm">	
 				<div class="form-group">
 					<label for="date_naissance">Date de Naissance</label>
 					<input type="date" id="date_naissance" class="form-control" v-model="date_naissance">
@@ -42,10 +42,19 @@
 		</div>
 
 		<div class="col-md-12">
+			<div class="row"> 
+				<select name="" id="" class="form-control col-md-2">
+					<option value="">Selectionner la classe ...</option>
+					<option v-for="classe in classes" value="" @click="selectClasse(classe)" >{{ classe.name  }}</option>
+				</select>
+				<button class="col-md-2" @click="showForm = !showForm">
+					{{ showForm == true ? 'Fermer' : 'Ajouter un eleve' }}
+				</button>
+			</div>
 			
 
-			<table class="table ">
-				<tr>
+			<table class="table">
+				<tr class="badge-info">
 					<th>#</th>
 					<th>Nom</th>
 					<th>Prénom</th>
@@ -55,11 +64,11 @@
 					<th>Action</th>
 				</tr>
 
-				<tr v-for="student in students.data" :key="student.id">
+				<tr v-for="student in students" :key="student.id">
 					<td>{{ student.id }}</td>
 					<td>{{ student.first_name }}</td>
 					<td>{{ student.last_name }}</td>
-					<td>{{ student.classe_id }}</td>
+					<td>{{ classe_name}}</td>
 					<td>{{ student.date_naissance }}</td>
 					<td>{{ student.sexe }}</td>
 				</tr>
@@ -81,7 +90,7 @@
 			BaseLayout
 		},
 		props:{
-			students : Object,
+			
 			classes : Array
 		},
 		data(){
@@ -91,7 +100,9 @@
 				date_naissance : "",
 				sexe : "",
 				classe_id : "",
-
+				showForm : false,
+				students : [],
+				classe_name : ""
 
 			}
 		},
@@ -109,7 +120,16 @@
 				classe_id : this.classe_id,
 
 				},{preserveState:false})
-			}
+			},
+
+			selectClasse(data){
+
+				this.classe_name = data.name
+
+				this.students = data.students
+
+			},
+			
 		}
 
 	}

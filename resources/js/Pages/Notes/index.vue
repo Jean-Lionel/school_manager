@@ -118,6 +118,7 @@
 		 			<th>TRAVAIL N°</th>
 		 			<th>PONDERATION</th>
 		 			<th>COURS</th>
+		 			<th>Action</th>
 		 		</tr>
 		 	</thead>
 		 	<tbody>
@@ -125,10 +126,36 @@
 		 			<td>{{ cour.anne_scolaire_id }}</td>
 		 			<td>{{ cour.trimestre }}</td>
 		 			<td>{{ cour.travail_numero }}</td>
+		 			<td>{{ cour.ponderation }}</td>
 		 			<td>{{ cour.course_id }}</td>
+		 			<td>
+		 				<button @click="addPoint(cour)">Ajouter des points</button>
+		 				<button @click="annuler(cour)">Annuler</button>
+		 			</td>
 		 		</tr>
 		 	</tbody>
 		 </table>
+		</div>
+
+		<div class="col md-12" v-if="classes_list">
+			<table class="table-sm table">
+				<thead>
+					<tr>
+						<th>NOM</th>
+						<th>PRENOM</th>
+						<th>POINT</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="student in classes_list.students">
+						<td>{{ student}}</td>
+						
+					</tr>
+				</tbody>
+			</table>
+
+			
 		</div>
 </div>
 </base-layout>
@@ -160,7 +187,7 @@
 					trimestre : "",
 					anne_scolaire_id : 1,
 				},
-				classes_list : [],
+				classes_list : "",
 				classe_name : "",
 				point : []
 
@@ -182,7 +209,6 @@
 				this.classes_list = classe.students;
 				this.classe_name = classe.name;
 				//console.log(classe.students)
-				
 
 			},
 			saveMark(){
@@ -192,6 +218,22 @@
 
 			next(){
 				this.$inertia.post('notes',this.form, {preserveState : false});
+			},
+
+			annuler(data){
+
+
+				if (!confirm("êtez-vous sur d'annuler le travail ?")) return;
+                data._method = 'DELETE';
+                this.$inertia.post('/notes/' + data.id, data)
+
+			},
+
+			addPoint(cour){
+				this.classes_list = cour
+
+				//console.log(cour, this.classes_list )
+
 			}
 
 		}

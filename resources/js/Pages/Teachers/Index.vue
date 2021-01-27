@@ -38,7 +38,7 @@
 
 				<h5>Liste des professeurs</h5>
 
-				<table class="table-hover table table-sm table-striped">
+				<table class="table-hover table-responsive table table-sm table-striped">
 					<tr>
 						<th>#</th>
 						<th>Nom</th>

@@ -60,6 +60,7 @@ class CourController extends Controller
             'ponderation' => 'required',
             'classe_id' => 'required',
             'teacher_id' => 'required',
+            'nombre_heure' => 'required',
 
         ]);
 
@@ -70,6 +71,7 @@ class CourController extends Controller
          $cour->ponderation = $request->ponderation;
          $cour->classe_id = $request->classe_id;
          $cour->teacher_id = $request->teacher_id;
+         $cour->nombre_heure = $request->nombre_heure;
 
          $cour->save();
 

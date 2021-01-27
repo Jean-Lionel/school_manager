@@ -95,8 +95,8 @@ export default{
 
 			//this.$router.push({ name: 'login' })
 
-			// this.$inertia.post('logout',{});
-			// window.location.href = 'login'
+			this.$inertia.post('logout',{});
+			window.location.href = 'login'
 
 
 		}
@@ -119,10 +119,12 @@ export default{
 }
 
 .footer{
-	position: absolute;
-	left: 0;
-	bottom: 0;
+	/*position: absolute;
+	left: auto;
+	bottom: auto;
+	*/
 	width: 100%;
+
 }
 
 #logout{
@@ -134,6 +136,6 @@ export default{
 }
 
 #left-bar{
-	min-height: 600px;
+	min-height: 560px;
 }
 </style>

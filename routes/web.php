@@ -34,4 +34,6 @@ Route::middleware('auth')->group(function(){
 	Route::resource('notes', NoteController::class);
 	Route::get('student_list/{id}', 'ClasseController@student_list')->name('student_list');
 
+	Route::get('anuler',[NoteController::class,'anuler']);
+
 });

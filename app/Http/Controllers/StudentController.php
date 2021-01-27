@@ -18,11 +18,11 @@ class StudentController extends Controller
     {
         //
 
-        $students = Student::paginate();
-        $classes = Classe::all();
+       // $students = Student::with('classe')->paginate();
+        $classes = Classe::with('students')->get();
 
        return Inertia::render('Students/index', [
-        'students' => $students,
+       // 'students' => $students,
         'classes' => $classes
        ]);
     }
